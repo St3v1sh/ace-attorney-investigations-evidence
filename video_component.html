@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ace Attorney Investigations Evidence - Video Component</title>
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            font-family: sans-serif;
+            background-color: #333333;
+            color: #cccccc;
+            overflow: hidden;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        #header {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        hr {
+            margin: 0.5rem 0;
+            padding: 0;
+            border: none;
+            height: 2px;
+            width: 100%;
+            background-color: #cccccc;
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 3rem;
+        }
+
+        #content > button {
+            margin: 0.5rem 0;
+            background-color: transparent;
+            border: none;
+            color: inherit;
+            font: inherit;
+            padding: 0 0.5rem;
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        #content img {
+            min-width: 3rem;
+            max-width: 3rem;
+            min-height: 3rem;
+            max-height: 3rem;
+            margin-right: 0.5rem;
+            border: #cccccc 1px solid;
+            border-radius: 0.5rem;
+        }
+
+        #content span {
+            text-wrap: wrap;
+            overflow-wrap: break-word;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <span>Ace Attorney Evidence List</span>
+        <hr>
+    </div>
+    <div id="content">
+        <button>
+            <img src="" alt="">
+            <span>lorem</span>
+        </button>
+        <button>
+            <img src="" alt="">
+            <span>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem </span>
+        </button>
+    </div>
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+</body>
+</html>
