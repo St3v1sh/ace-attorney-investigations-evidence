@@ -40,7 +40,7 @@ function update() {
                 if (!modal.classList.contains("show-modal")) {
                     modal.classList.add("show-modal");
                     modal.classList.add("slide-in");
-                    modalImg.src = d[2];
+                    modalImg.src = d[3] === "" ? d[2] : d[3];
                     modalDescription.textContent = descriptions[i];
                 }
             };
