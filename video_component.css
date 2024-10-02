@@ -137,6 +137,10 @@ button {
 }
 
 #modal > img {
+  min-width: 10rem;
+  max-width: 10rem;
+  min-height: 10rem;
+  max-height: 10rem;
   margin-bottom: 3rem;
 }
 
