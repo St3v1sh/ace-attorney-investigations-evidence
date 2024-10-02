@@ -35,22 +35,12 @@
             overflow: none;
         }
 
-        hr {
-            margin: 0;
-            margin-bottom: 1rem;
-            padding: 0;
-            border: none;
-            height: 2px;
-            width: 100%;
-            background-color: #cccccc;
-        }
-
         #update-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-bottom: 1rem;
+            margin: 1rem 0;
         }
 
         #content {
@@ -189,7 +179,6 @@
 </head>
 
 <body>
-    <hr>
     <div id="update-container">
         <button id="update">&#x21BB;</button>
     </div>
@@ -202,67 +191,7 @@
         <button>OK</button>
     </div>
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <script>
-        async function fetchData(url) {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Response error`);
-            }
-            const data = await response.json();
-            return data.values.slice(1).filter((d) => !d.every((v) => v === ""));
-        }
-
-        function update() {
-            const content = document.getElementById("content");
-            content.innerHTML = `<span style="margin-top: 5rem;">LOADING</span>`;
-
-            const baseUrl = "https://script.google.com/macros/s/AKfycbx7tUkCXq_Qx1vB89OKpXUuMntd2JTDGDM5nyyOIhUV1T_JKEd5XGUNuTNvDWTeSurQhQ/exec";
-            const para = {
-                spreadsheetId: "1cFQ63OScDlJGAISzanY2W9goLaFwtEAcP890CBh2A94",
-                sheetName: "Sheet1"
-            };
-            const q = new URLSearchParams(para);
-            const url = baseUrl + "?" + q;
-            const descriptions = [];
-
-            fetchData(url).then((data) => {
-                content.innerHTML = "";
-                data.forEach((d, i) => {
-                    const button = document.createElement("button");
-                    button.innerHTML = `
-                    <img src="${d[0]}" alt="">
-                    <span class="title">${d[1]}</span>
-                    `;
-                    content.appendChild(button);
-                    descriptions.push(d[2]);
-
-                    button.onclick = () => {
-                        const modal = document.getElementById("modal");
-                        const modalImg = modal.querySelector("img");
-                        const modalDescription = modal.querySelector("span");
-                        if (!modal.classList.contains("show-modal")) {
-                            modal.classList.add("show-modal");
-                            modal.classList.add("slide-in");
-                            modalImg.src = d[0];
-                            modalDescription.textContent = descriptions[i];
-                        }
-                    };
-                });
-            }).catch((err) => {
-                content.innerHTML = `<span>Error loading: ${err.message}</span>`;
-            });
-        }
-
-        document.getElementById("update").onclick = () => {
-            update();
-        };
-
-        document.getElementById("modal").onclick = () => {
-            document.getElementById("modal").classList.remove("show-modal");
-        };
-
-        update();
-    </script>
+    <script src="video_component.js"></script>
 </body>
 
 </html>
