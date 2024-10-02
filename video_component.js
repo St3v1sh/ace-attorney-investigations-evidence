@@ -27,11 +27,11 @@ function update() {
         data.forEach((d, i) => {
             const button = document.createElement("button");
             button.innerHTML = `
-            <img src="${d[0]}" alt="">
-            <span class="title">${d[1]}</span>
+            <img src="${d[2]}" alt="">
+            <span class="title">${d[0]}</span>
             `;
             content.appendChild(button);
-            descriptions.push(d[2]);
+            descriptions.push(d[1]);
 
             button.onclick = () => {
                 const modal = document.getElementById("modal");
