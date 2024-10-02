@@ -35,13 +35,20 @@ function update() {
 
             button.onclick = () => {
                 const modal = document.getElementById("modal");
-                const modalImg = modal.querySelector("img");
-                const modalDescription = modal.querySelector("span");
                 if (!modal.classList.contains("show-modal")) {
+                    // Set up the modal.
+                    const images = d[3] === "" ? [d[2]] : d[3].split(",").map((s) => s.trim());
+                    let renderedModal = ``;
+
+                    images.forEach((img) => {
+                        renderedModal += `<img src="${img}" alt="">`;
+                    });
+                    renderedModal += `<span class="description">${descriptions[i]}</span>`;
+                    renderedModal += `<button>OK</button>`;
+                    modal.innerHTML = renderedModal;
+
                     modal.classList.add("show-modal");
                     modal.classList.add("slide-in");
-                    modalImg.src = d[3] === "" ? d[2] : d[3];
-                    modalDescription.textContent = descriptions[i];
                 }
             };
         });
