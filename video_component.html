@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ace Attorney Investigations Evidence - Video Component</title>
     <style>
         html {
+            background-color: #18181b;
+        }
+
+        html,
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: inherit;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -23,26 +30,14 @@
             height: 100%;
             flex-direction: column;
             font-family: sans-serif;
-            background-color: #333333;
             color: #cccccc;
-            overflow: hidden;
-        }
-
-        div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        #header {
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 4rem;
+            overflow: none;
         }
 
         hr {
-            margin: 0.5rem 0;
+            margin: 0;
+            margin-bottom: 1rem;
             padding: 0;
             border: none;
             height: 2px;
@@ -50,60 +45,224 @@
             background-color: #cccccc;
         }
 
+        #update-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
         #content {
             display: flex;
             flex-direction: column;
+            align-items: center;
             width: 100%;
-            min-height: 3rem;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
 
-        #content > button {
-            margin: 0.5rem 0;
+        #content::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        #content::-webkit-scrollbar-thumb {
+            background-color: #cccccc;
+            border-radius: 0.5rem;
+        }
+
+        button {
+            box-sizing: border-box;
+            cursor: pointer;
+            padding: 0 1rem;
             background-color: transparent;
             border: none;
             color: inherit;
             font: inherit;
-            padding: 0 0.5rem;
+            font-size: 3rem;
+        }
+
+        #content>button {
             display: flex;
             flex-direction: row;
             align-items: start;
             width: 100%;
-            box-sizing: border-box;
-            cursor: pointer;
+            max-width: 100%;
+            margin: 0;
+            margin-bottom: 2rem;
         }
 
         #content img {
-            min-width: 3rem;
-            max-width: 3rem;
-            min-height: 3rem;
-            max-height: 3rem;
-            margin-right: 0.5rem;
+            min-width: 6rem;
+            max-width: 6rem;
+            min-height: 6rem;
+            max-height: 6rem;
+            margin-right: 2rem;
+            border: #cccccc 3px solid;
+            border-radius: 1rem;
+        }
+
+        #content span.title {
+            display: block;
+            overflow-wrap: break-word;
+            white-space: normal;
+            text-align: left;
+            font-size: 4rem;
+            width: calc(100% - 8rem);
+        }
+
+        #update {
+            width: calc(100% - 2rem);
             border: #cccccc 1px solid;
+            border-radius: 1rem;
+            height: 6rem;
+            background-color: #cccccc;
+            color: #18181b;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #modal.show-modal {
+            display: flex;
+        }
+
+        #modal {
+            display: none;
+            position: absolute;
+            padding: 2rem;
+            padding-top: 5rem;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+            background-color: #1f1f23;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: scroll;
+            overflow-x: none;
+        }
+
+        #modal::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        #modal::-webkit-scrollbar-thumb {
+            background-color: #cccccc;
             border-radius: 0.5rem;
         }
 
-        #content span {
-            text-wrap: wrap;
-            overflow-wrap: break-word;
-            text-align: left;
+        #modal>img {
+            margin-bottom: 3rem;
+        }
+
+        #modal>span.description {
+            margin-bottom: 3rem;
+        }
+
+        #modal>button {
+            padding: 2rem 3rem;
+            border: #cccccc 1px solid;
+            border-radius: 1rem;
+            background-color: #cccccc;
+            color: #18181b;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in {
+            animation: slide-in 0.25s ease-in-out;
         }
     </style>
 </head>
+
 <body>
-    <div id="header">
-        <span>Ace Attorney Evidence List</span>
-        <hr>
+    <hr>
+    <div id="update-container">
+        <button id="update">&#x21BB;</button>
     </div>
     <div id="content">
-        <button>
-            <img src="" alt="">
-            <span>lorem</span>
-        </button>
-        <button>
-            <img src="" alt="">
-            <span>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem </span>
-        </button>
+        <span style="margin-top: 5rem;">LOADING</span>
+    </div>
+    <div id="modal">
+        <img src="" alt="">
+        <span class="description"></span>
+        <button>OK</button>
     </div>
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script>
+        async function fetchData(url) {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Response error`);
+            }
+            const data = await response.json();
+            return data.values.slice(1).filter((d) => !d.every((v) => v === ""));
+        }
+
+        function update() {
+            const content = document.getElementById("content");
+            content.innerHTML = `<span style="margin-top: 5rem;">LOADING</span>`;
+
+            const baseUrl = "https://script.google.com/macros/s/AKfycbx7tUkCXq_Qx1vB89OKpXUuMntd2JTDGDM5nyyOIhUV1T_JKEd5XGUNuTNvDWTeSurQhQ/exec";
+            const para = {
+                spreadsheetId: "1cFQ63OScDlJGAISzanY2W9goLaFwtEAcP890CBh2A94",
+                sheetName: "Sheet1"
+            };
+            const q = new URLSearchParams(para);
+            const url = baseUrl + "?" + q;
+            const descriptions = [];
+
+            fetchData(url).then((data) => {
+                content.innerHTML = "";
+                data.forEach((d, i) => {
+                    const button = document.createElement("button");
+                    button.innerHTML = `
+                    <img src="${d[0]}" alt="">
+                    <span class="title">${d[1]}</span>
+                    `;
+                    content.appendChild(button);
+                    descriptions.push(d[2]);
+
+                    button.onclick = () => {
+                        const modal = document.getElementById("modal");
+                        const modalImg = modal.querySelector("img");
+                        const modalDescription = modal.querySelector("span");
+                        if (!modal.classList.contains("show-modal")) {
+                            modal.classList.add("show-modal");
+                            modal.classList.add("slide-in");
+                            modalImg.src = d[0];
+                            modalDescription.textContent = descriptions[i];
+                        }
+                    };
+                });
+            }).catch((err) => {
+                content.innerHTML = `<span>Error loading: ${err.message}</span>`;
+            });
+        }
+
+        document.getElementById("update").onclick = () => {
+            update();
+        };
+
+        document.getElementById("modal").onclick = () => {
+            document.getElementById("modal").classList.remove("show-modal");
+        };
+
+        update();
+    </script>
 </body>
+
 </html>
