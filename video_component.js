@@ -38,11 +38,12 @@ function update() {
                 if (!modal.classList.contains("show-modal")) {
                     // Set up the modal.
                     const images = d[3] === "" ? [d[2]] : d[3].split(",").map((s) => s.trim());
-                    let renderedModal = ``;
+                    let renderedModal = `<div>`;
 
                     images.forEach((img) => {
                         renderedModal += `<img src="${img}" alt="">`;
                     });
+                    renderedModal += "</div>";
                     renderedModal += `<span class="description">${descriptions[i]}</span>`;
                     renderedModal += `<button>OK</button>`;
                     modal.innerHTML = renderedModal;

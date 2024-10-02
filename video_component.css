@@ -136,9 +136,17 @@ button {
   border-radius: 0.5rem;
 }
 
-#modal > img {
+#modal > div {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+#modal img {
   min-width: 10rem;
   min-height: 10rem;
+  max-width: 100%;
+  height: auto;
   margin-bottom: 3rem;
 }
 
