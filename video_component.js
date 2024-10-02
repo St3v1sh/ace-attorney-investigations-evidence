@@ -1,3 +1,10 @@
+// Scale if mobile.
+const urlParams = new URLSearchParams(window.location.search).get("platform");
+if (urlParams === "mobile") {
+    document.documentElement.style.fontSize = "40%";
+}
+
+// Fetch data.
 async function fetchData(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -7,6 +14,7 @@ async function fetchData(url) {
     return data.values.slice(1).filter((d) => !d.every((v) => v === ""));
 }
 
+// Update evidence list.
 function update() {
     const content = document.getElementById("content");
     content.innerHTML = `<span style="margin-top: 5rem;">LOADING</span>`;
@@ -50,4 +58,5 @@ document.getElementById("modal").onclick = () => {
     document.getElementById("modal").classList.remove("show-modal");
 };
 
+// Initial update.
 update();
