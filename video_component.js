@@ -17,7 +17,7 @@ async function fetchData(url) {
 // Update evidence list.
 function update() {
     const content = document.getElementById("content");
-    content.innerHTML = `<span style="margin-top: 5rem;">LOADING</span>`;
+    content.innerHTML = `<span class="loading">LOADING</span>`;
 
     const url = "https://script.google.com/macros/s/AKfycbx7tUkCXq_Qx1vB89OKpXUuMntd2JTDGDM5nyyOIhUV1T_JKEd5XGUNuTNvDWTeSurQhQ/exec?spreadsheetId=1cFQ63OScDlJGAISzanY2W9goLaFwtEAcP890CBh2A94&sheetName=Sheet1";
     const descriptions = [];

@@ -1,3 +1,17 @@
+:root {
+  --primary-color-red: #a8001a;
+  --primary-color-red-rgb: 168, 0, 26;
+  --primary-color-cyan: #01cfcd;
+  --primary-color-cyan-rgb: 1, 207, 205;
+  --primary-color-purple: #9c00ce;
+  --primary-color-purple-rgb: 156, 0, 206;
+
+  --primary-color-dark: #18181b;
+  --primary-color-dark-rgb: 24, 24, 27;
+  --primary-color-text: #cccccc;
+  --primary-color-text-rgb: 204, 204, 204;
+}
+
 html {
   background-color: #18181b;
 }
@@ -21,10 +35,38 @@ body {
   width: 100%;
   height: 100%;
   flex-direction: column;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: #cccccc;
   font-size: 4rem;
   overflow: none;
+
+  background: repeating-linear-gradient(135deg,
+      var(--primary-color-dark),
+      var(--primary-color-dark) 48rem,
+      var(--primary-color-purple) 48rem,
+      var(--primary-color-purple) 72rem,
+      var(--primary-color-dark) 72rem,
+      var(--primary-color-dark) 104rem,
+      var(--primary-color-red) 104rem,
+      var(--primary-color-red) 112rem,
+      var(--primary-color-dark) 112rem,
+      var(--primary-color-dark) 148rem,
+      var(--primary-color-cyan) 148rem,
+      var(--primary-color-cyan) 168rem,
+      var(--primary-color-dark) 168rem,
+      var(--primary-color-dark) 216rem);
+  background-size: calc(216rem / sin(135deg)) 100%;
+  animation: background-gradient 40s linear infinite reverse;
+}
+
+@keyframes background-gradient {
+  100% {
+    background-position: calc(216rem / sin(135deg)) 0;
+  }
 }
 
 #update-container {
@@ -50,7 +92,7 @@ body {
 }
 
 #content::-webkit-scrollbar-thumb {
-  background-color: #cccccc;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0.5rem;
 }
 
@@ -65,10 +107,10 @@ button {
   font-size: 3rem;
 }
 
-#content > button {
+#content>button {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -86,20 +128,31 @@ button {
 }
 
 #content span.title {
-  display: block;
+  display: flex;
   overflow-wrap: break-word;
   white-space: normal;
   text-align: left;
+  background-color: rgba(var(--primary-color-dark-rgb), .3);
+  backdrop-filter: blur(2rem);
+  border-radius: 1rem;
+  padding: 1rem;
   font-size: 4rem;
-  width: calc(100% - 8rem);
+}
+
+#content span.loading {
+  background-color: rgba(var(--primary-color-dark-rgb), .3);
+  backdrop-filter: blur(2rem);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 5rem;
 }
 
 #update {
   width: calc(100% - 2rem);
-  border: #cccccc 1px solid;
   border-radius: 1rem;
   height: 6rem;
-  background-color: #cccccc;
+  background-color: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(2rem);
   color: #18181b;
   font-weight: bold;
   cursor: pointer;
@@ -120,7 +173,8 @@ button {
   right: 0;
   max-width: 100%;
   max-height: 100%;
-  background-color: #1f1f23;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2rem);
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
@@ -132,11 +186,11 @@ button {
 }
 
 #modal::-webkit-scrollbar-thumb {
-  background-color: #cccccc;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0.5rem;
 }
 
-#modal > div {
+#modal>div {
   display: flex;
   flex-direction: column;
   max-width: 100%;
@@ -150,11 +204,11 @@ button {
   margin-bottom: 3rem;
 }
 
-#modal > span.description {
+#modal>span.description {
   margin-bottom: 3rem;
 }
 
-#modal > button {
+#modal>button {
   padding: 2rem 3rem;
   border: #cccccc 1px solid;
   border-radius: 1rem;
