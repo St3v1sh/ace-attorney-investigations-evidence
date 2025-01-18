@@ -29,6 +29,7 @@ function update() {
             button.innerHTML = `
             <img src="${d[2]}" alt="">
             <span class="title">${d[0]}</span>
+            <div class="animate-right"></div>
             `;
             content.appendChild(button);
             descriptions.push(d[1]);

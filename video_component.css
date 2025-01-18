@@ -13,7 +13,7 @@
 }
 
 html {
-  background-color: #18181b;
+  background-color: var(--primary-color-dark);
 }
 
 html,
@@ -43,30 +43,6 @@ body {
   color: #cccccc;
   font-size: 4rem;
   overflow: none;
-
-  background: repeating-linear-gradient(135deg,
-      var(--primary-color-dark),
-      var(--primary-color-dark) 48rem,
-      var(--primary-color-purple) 48rem,
-      var(--primary-color-purple) 72rem,
-      var(--primary-color-dark) 72rem,
-      var(--primary-color-dark) 104rem,
-      var(--primary-color-red) 104rem,
-      var(--primary-color-red) 112rem,
-      var(--primary-color-dark) 112rem,
-      var(--primary-color-dark) 148rem,
-      var(--primary-color-cyan) 148rem,
-      var(--primary-color-cyan) 168rem,
-      var(--primary-color-dark) 168rem,
-      var(--primary-color-dark) 216rem);
-  background-size: calc(216rem / sin(135deg)) 100%;
-  animation: background-gradient 40s linear infinite reverse;
-}
-
-@keyframes background-gradient {
-  100% {
-    background-position: calc(216rem / sin(135deg)) 0;
-  }
 }
 
 #update-container {
@@ -108,6 +84,7 @@ button {
 }
 
 #content>button {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -117,13 +94,30 @@ button {
   margin-bottom: 2rem;
 }
 
+.animate-right {
+  z-index: -1;
+  position: absolute;
+  background-color: rgba(var(--primary-color-cyan-rgb), .8);
+  width: calc(100%);
+  height: 100%;
+  top: 0;
+  right: calc(100% - 8rem);
+  transition: all 0.25s ease-in-out;
+  border-radius: 1rem;
+}
+
+#content>button:hover > .animate-right {
+  right: 0;
+  background-color: var(--primary-color-cyan);
+  border-radius: 0;
+}
+
 #content img {
   min-width: 6rem;
   max-width: 6rem;
   min-height: 6rem;
   max-height: 6rem;
   margin-right: 2rem;
-  border: #cccccc 3px solid;
   border-radius: 1rem;
 }
 
@@ -132,16 +126,17 @@ button {
   overflow-wrap: break-word;
   white-space: normal;
   text-align: left;
-  background-color: rgba(var(--primary-color-dark-rgb), .3);
-  backdrop-filter: blur(2rem);
-  border-radius: 1rem;
   padding: 1rem;
   font-size: 4rem;
+  transition: all 0.25s ease-in-out;
+}
+
+#content>button:hover > span.title {
+  color: var(--primary-color-dark);
 }
 
 #content span.loading {
   background-color: rgba(var(--primary-color-dark-rgb), .3);
-  backdrop-filter: blur(2rem);
   border-radius: 1rem;
   padding: 1rem;
   margin-top: 5rem;
@@ -151,8 +146,9 @@ button {
   width: calc(100% - 2rem);
   border-radius: 1rem;
   height: 6rem;
-  background-color: rgba(255, 255, 255, .5);
-  backdrop-filter: blur(2rem);
+  /* background-color: rgba(255, 255, 255, .5); */
+  /* background-color: var(--primary-color-purple); */
+  background-color: rgba(var(--primary-color-purple-rgb), 0.8);
   color: #18181b;
   font-weight: bold;
   cursor: pointer;
