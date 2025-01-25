@@ -6,8 +6,8 @@
   "main": "video_component.html",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node zip.js && git subtree push --prefix dist origin gh-pages",
-    "pre-build": "tsc -b && vite build",
+    "deploy": "node zip.js && git subtree push --prefix dist origin gh-pages",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
