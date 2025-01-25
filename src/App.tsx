@@ -71,7 +71,6 @@ const App: React.FC = () => {
   }, []);
 
   const handleButtonClick = (evidence: Evidence) => {
-    console.log(evidence);
     const images =
       evidence.additionalImages.length === 0
         ? [evidence.imageUrl]
