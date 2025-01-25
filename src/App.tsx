@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 const App: React.FC = () => {
-  const [data, setData] = useState<any[]>([]);
+  interface Evidence {
+    title: string;
+    description: string;
+    imageUrl: string;
+    additionalImages: string[];
+  }
+
+  const [evidenceList, setEvidenceList] = useState<Evidence[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [modalContent, setModalContent] = useState<{
@@ -26,7 +33,9 @@ const App: React.FC = () => {
       throw new Error("Response error");
     }
     const data = await response.json();
-    return data.values.slice(1).filter((d: any[]) => !d.every((v) => v === ""));
+    return data.values.filter(
+      (data: string[]) => !data.every((value: string) => value === "")
+    );
   };
 
   const update = () => {
@@ -34,11 +43,20 @@ const App: React.FC = () => {
     setError(null);
 
     const url =
-      "https://script.google.com/macros/s/AKfycbx7tUkCXq_Qx1vB89OKpXUuMntd2JTDGDM5nyyOIhUV1T_JKEd5XGUNuTNvDWTeSurQhQ/exec?spreadsheetId=1cFQ63OScDlJGAISzanY2W9goLaFwtEAcP890CBh2A94&sheetName=Sheet1";
+      "https://script.google.com/macros/s/AKfycbyx7_X-nLwHXVufOIi4sUD7rgc_tqO8rg4kpau7rQl62CIwvIkguPoecTSi4QgNZLbBug/exec";
 
     fetchData(url)
       .then((data) => {
-        setData(data);
+        setEvidenceList(
+          data.map((d: string[]) => ({
+            title: d[0],
+            description: d[1],
+            imageUrl: d[2],
+            additionalImages: d[3]
+              ? d[3].split(",").map((s: string) => s.trim())
+              : [],
+          }))
+        );
         setLoading(false);
       })
       .catch((err) => {
@@ -49,12 +67,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     update();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleButtonClick = (d: any[]) => {
+  const handleButtonClick = (evidence: Evidence) => {
+    console.log(evidence);
     const images =
-      d[3] === "" ? [d[2]] : d[3].split(",").map((s: string) => s.trim());
-    setModalContent({ images, description: d[1] });
+      evidence.additionalImages.length === 0
+        ? [evidence.imageUrl]
+        : evidence.additionalImages;
+    setModalContent({ images, description: evidence.description });
   };
 
   const closeModal = () => {
@@ -73,10 +95,10 @@ const App: React.FC = () => {
         {error && <span>Error loading: {error}</span>}
         {!loading &&
           !error &&
-          data.map((d, i) => (
-            <button key={i} onClick={() => handleButtonClick(d)}>
-              <img src={d[2]} alt="" />
-              <span className="title">{d[0]}</span>
+          evidenceList.map((evidence, i) => (
+            <button key={i} onClick={() => handleButtonClick(evidence)}>
+              <img src={evidence.imageUrl} alt="" />
+              <span className="title">{evidence.title}</span>
               <div className="animate-right"></div>
             </button>
           ))}
