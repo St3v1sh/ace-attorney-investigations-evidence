@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import background from "./assets/court-bg.jpg";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -12,10 +13,10 @@ const App: React.FC = () => {
   const [evidenceList, setEvidenceList] = useState<Evidence[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [modalContent, setModalContent] = useState<{
-    images: string[];
-    description: string;
-  } | null>(null);
+  // const [modalContent, setModalContent] = useState<{
+  //   images: string[];
+  //   description: string;
+  // } | null>(null);
 
   useEffect(() => {
     // Scale if mobile.
@@ -70,50 +71,46 @@ const App: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleButtonClick = (evidence: Evidence) => {
-    const images =
-      evidence.additionalImages.length === 0
-        ? [evidence.imageUrl]
-        : evidence.additionalImages;
-    setModalContent({ images, description: evidence.description });
-  };
+  // const handleButtonClick = (evidence: Evidence) => {
+  //   const images =
+  //     evidence.additionalImages.length === 0
+  //       ? [evidence.imageUrl]
+  //       : evidence.additionalImages;
+  //   setModalContent({ images, description: evidence.description });
+  // };
 
-  const closeModal = () => {
-    setModalContent(null);
-  };
+  // const closeModal = () => {
+  //   setModalContent(null);
+  // };
 
   return (
-    <div className="app">
-      <div id="update-container">
-        <button id="update" onClick={update}>
-          &#x21BB;
-        </button>
-      </div>
-      <div id="content">
-        {loading && <span className="loading">LOADING</span>}
-        {error && <span>Error loading: {error}</span>}
-        {!loading &&
-          !error &&
-          evidenceList.map((evidence, i) => (
-            <button key={i} onClick={() => handleButtonClick(evidence)}>
-              <img src={evidence.imageUrl} alt="" />
-              <span className="title">{evidence.title}</span>
-              <div className="animate-right"></div>
-            </button>
-          ))}
-      </div>
-      {modalContent && (
-        <div id="modal" className="slide-in" onClick={closeModal}>
-          <div>
-            {modalContent.images.map((img, index) => (
-              <img key={index} src={img} alt="" />
-            ))}
+    <>
+      <div
+        className="background"
+        style={{ backgroundImage: `url(${background})` }}
+      ></div>
+      <div className="crt"></div>
+      <div className="book-container">
+        <div className="leather-binding">
+          <div className="lacing-top"></div>
+          <div className="content-container">
+            <div className="tabs-container">
+              <div className="tab">
+                <div className="tabs-container-background paper-background"></div>
+                <div className="tab-content">test</div>
+              </div>
+              <div className="tab">
+                <div className="tabs-container-background paper-background"></div>
+                <div className="tab-content">test</div>
+              </div>
+            </div>
+            <div className="content-background paper-background"></div>
+            <div className="content">test</div>
           </div>
-          <span className="description">{modalContent.description}</span>
-          <button onClick={closeModal}>OK</button>
+          <div className="lacing-bottom"></div>
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 
