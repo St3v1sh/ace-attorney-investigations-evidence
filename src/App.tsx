@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import background from "./assets/court-bg.jpg";
-import "./App.css";
 import { Evidence } from "./utils/types";
 import EvidenceContent from "./components/EvidenceContent/EvidenceContent";
+import "./App.css";
+import ProfileContent from "./components/ProfileContent/ProfileContent";
 
 const App: React.FC = () => {
   const url =
@@ -121,9 +122,15 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="content-background paper-background"></div>
-            <div className="content">
-              <EvidenceContent />
-            </div>
+            {activeTab === "Evidence" ? (
+              <div className="content" key="evidence">
+                <EvidenceContent />
+              </div>
+            ) : (
+              <div className="content" key="profiles">
+                <ProfileContent />
+              </div>
+            )}
           </div>
           <div className="lacing-bottom"></div>
         </div>

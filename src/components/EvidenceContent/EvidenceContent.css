@@ -1,0 +1,106 @@
+.evidence-content-container {
+    display: grid;
+    grid-template-rows: auto minmax(6.5rem, 20%);
+    gap: 0.7rem;
+    width: 100%;
+    height: 100%;
+}
+
+.evidence-detail-container {
+    margin: 0 0.7rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.4rem 0.2rem -0.1rem rgba(159, 153, 141, 1);
+}
+
+.evidence-detail-container-background {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    background-color: #9f998d;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
+    box-shadow: inset 0 0 0 1px white
+}
+
+.evidence-detail {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #293331;
+    border-radius: 0.25rem;
+    min-height: 10rem;
+}
+
+.evidence-detail-image {
+    display: flex;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 0;
+    padding: 0.4rem;
+    width: 10rem;
+    height: 10rem;
+    border: 0.3rem solid black;
+    border-radius: 0.25rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+.pagination-container {
+    display: grid;
+    grid-template-rows: auto 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.evidence-list-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-top-color: #606060;
+    border-left-color: #808080;
+    border-bottom-color: #fff;
+    border-right-color: #808080;
+    box-shadow:
+        inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5),
+        inset 0 -0.1rem 0.2rem rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+}
+
+.page-indicator {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: end;
+}
+
+.page-indicator > div {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    margin: 0 0.25rem;
+    background-color: #aba8a7;
+    border-top-color: #606060;
+    border-left-color: #808080;
+    border-bottom-color: #fff;
+    border-right-color: #808080;
+    box-shadow:
+        inset 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5),
+        inset -0.05rem -0.05rem 0.1rem rgba(255, 255, 255, 0.5);
+}
+
+.page-indicator > div.active {
+    background-color: #5e5958;
+}
