@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import background from "./assets/court-bg.jpg";
 import "./App.css";
+import { Evidence } from "./utils/types";
+import EvidenceContent from "./components/EvidenceContent/EvidenceContent";
 
 const App: React.FC = () => {
   const url =
     "https://script.google.com/macros/s/AKfycbyx7_X-nLwHXVufOIi4sUD7rgc_tqO8rg4kpau7rQl62CIwvIkguPoecTSi4QgNZLbBug/exec";
 
-  interface Evidence {
-    title: string;
-    description: string;
-    imageUrl: string;
-    additionalImages: string[];
-  }
   const [evidenceList, setEvidenceList] = useState<Evidence[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -125,7 +121,9 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="content-background paper-background"></div>
-            <div className="content">test</div>
+            <div className="content">
+              <EvidenceContent />
+            </div>
           </div>
           <div className="lacing-bottom"></div>
         </div>
