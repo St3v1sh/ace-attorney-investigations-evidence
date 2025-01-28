@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 :root {
   --primary-color-red: #a8001a;
   --primary-color-red-rgb: 168, 0, 26;
@@ -20,10 +22,9 @@
 
 html {
   background-color: var(--primary-color-gray);
-  font-family: Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--primary-color-text);
+  color: black;
 }
 
 html,
@@ -37,4 +38,8 @@ body,
   padding: 0;
   width: 100%;
   height: 100%;
+}
+
+* {
+  font-family: "Encode Sans Condensed", serif;
 }
