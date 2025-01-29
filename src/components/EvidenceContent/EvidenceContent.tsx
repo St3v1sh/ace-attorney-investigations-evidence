@@ -8,9 +8,12 @@ const EvidenceContent: React.FC = () => {
         <div className="evidence-detail-container-background">
           <div className="evidence-detail">
             <div className="evidence-detail-left">
-              <div className="evidence-detail-image-container">
+              <button className="evidence-detail-image-container">
                 <SafeImage src="" alt="" className="evidence-detail-image" />
-              </div>
+                <div className="evidence-image-hover-overlay">
+                  <span className="evidence-image-hover-overlay-hint">Click for details</span>
+                </div>
+              </button>
               <div className="evidence-detail-ribbon-container">
                 <div className="evidence-detail-ribbon">
                   <div className="evidence-detail-ribbon-stitch">
@@ -19,23 +22,15 @@ const EvidenceContent: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="evidence-detail-description">
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
-              testing testing testing testing testing testing testing testing
+            <div className="evidence-info-container">
+              <div className="evidence-title">HH-3000 Bomb</div>
+              <div className="evidence-description-container">
+                <div className="evidence-description">
+                  <span className="evidence-description-text">
+                    testing testing testing
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
