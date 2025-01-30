@@ -133,6 +133,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  image-rendering: pixelated;
 }
 
 .evidence-image-hover-overlay {
@@ -225,69 +226,6 @@
 .evidence-description-text {
   width: 100%;
   line-height: 1.4rem;
-}
-
-.pagination-container {
-  display: grid;
-  grid-template-rows: auto 1rem;
-  width: 100%;
-  height: 100%;
-}
-
-.evidence-controls-container {
-  display: flex;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5),
-    inset 0 -0.1rem 0.2rem rgba(255, 255, 255, 0.5);
-  border-radius: 0.5rem;
-}
-
-.evidence-controls {
-  flex: 0 0 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.evidence-list {
-  box-sizing: border-box;
-  flex: 1;
-  background-color: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0.2rem 0 0.2rem -0.2rem rgba(0, 0, 0, 0.5),
-    inset -0.2rem 0 0.2rem -0.2rem rgba(0, 0, 0, 0.5);
-  border-left: 0.1rem solid rgba(0, 0, 0, 0.2);
-  border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
-}
-
-.page-indicator {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: end;
-}
-
-.page-indicator > div {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  margin: 0 0.25rem;
-  background-color: #aba8a7;
-  border-top-color: #606060;
-  border-left-color: #808080;
-  border-bottom-color: #fff;
-  border-right-color: #808080;
-  box-shadow: inset 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5),
-    inset -0.05rem -0.05rem 0.1rem rgba(255, 255, 255, 0.5);
-}
-
-.page-indicator > div.active {
-  background-color: #5e5958;
 }
 
 @media screen and (max-width: 600px) {

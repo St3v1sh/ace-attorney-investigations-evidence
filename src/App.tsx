@@ -130,7 +130,7 @@ const App: React.FC = () => {
             <div className="content-background paper-background"></div>
             {activeTab === "Evidence" ? (
               <div className="content" key="evidence">
-                <EvidenceContent evidence={evidenceList} />
+                <EvidenceContent evidenceList={evidenceList} />
               </div>
             ) : (
               <div className="content" key="profiles">
