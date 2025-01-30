@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import background from "./assets/court-bg.jpg";
-import { Evidence } from "./utils/types";
+import { Evidence, Profile } from "./utils/types";
 import EvidenceContent from "./components/EvidenceContent/EvidenceContent";
 import "./App.css";
 import ProfileContent from "./components/ProfileContent/ProfileContent";
 
 const App: React.FC = () => {
   const url =
-    "https://script.google.com/macros/s/AKfycbyx7_X-nLwHXVufOIi4sUD7rgc_tqO8rg4kpau7rQl62CIwvIkguPoecTSi4QgNZLbBug/exec";
+    "https://script.google.com/macros/s/AKfycbwoZ4P2IFHQoFx8cwQX-0YIjokkZ_MNlvWqdm_TklAdyYWFtsjhhC4WbbpcaG_jRb-rkw/exec";
 
   const [evidenceList, setEvidenceList] = useState<Evidence[]>([]);
+  const [profileList, setProfileList] = useState<Profile[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -27,10 +28,7 @@ const App: React.FC = () => {
     if (!response.ok) {
       throw new Error("Response error");
     }
-    const data = await response.json();
-    return data.values.filter(
-      (data: string[]) => !data.every((value: string) => value === "")
-    );
+    return await response.json();
   };
 
   const update = () => {
@@ -41,13 +39,21 @@ const App: React.FC = () => {
     fetchData(url)
       .then((data) => {
         setEvidenceList(
-          data.map((d: string[]) => ({
+          data.evidence?.map((d: string[]) => ({
             title: d[0],
             description: d[1],
             imageUrl: d[2],
             additionalImages: d[3]
               ? d[3].split(",").map((s: string) => s.trim())
               : [],
+          }))
+        );
+        setProfileList(
+          data.profiles?.map((d: string[]) => ({
+            name: d[0],
+            description: d[1],
+            imageUrl: d[2],
+            age: d[3],
           }))
         );
         setLoading(false);
@@ -57,7 +63,7 @@ const App: React.FC = () => {
         const errorId = Date.now();
         setError((previousErrors) => [
           ...previousErrors,
-          { id: errorId, message: err.message },
+          { id: errorId, message: "Fetch error. " + err.message },
         ]);
 
         setTimeout(() => {
@@ -124,7 +130,7 @@ const App: React.FC = () => {
             <div className="content-background paper-background"></div>
             {activeTab === "Evidence" ? (
               <div className="content" key="evidence">
-                <EvidenceContent />
+                <EvidenceContent evidence={evidenceList} />
               </div>
             ) : (
               <div className="content" key="profiles">
@@ -137,7 +143,11 @@ const App: React.FC = () => {
         {error && (
           <div className="error-container">
             {error.map((err) => (
-              <button className="error" onClick={() => closeError(err.id)}>
+              <button
+                key={err.id}
+                className="error"
+                onClick={() => closeError(err.id)}
+              >
                 {err.message}
               </button>
             ))}
