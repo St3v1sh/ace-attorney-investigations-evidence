@@ -3,6 +3,7 @@ import { Evidence } from "../../utils/types";
 import ItemCarousel from "../ItemCarousel/ItemCarousel";
 import SafeImage from "../SafeImage/SafeImage";
 import "./EvidenceContent.css";
+import DetailImages from "../DetailImages/DetailImages";
 
 interface EvidenceContentProps {
   evidenceList: Evidence[];
@@ -10,6 +11,7 @@ interface EvidenceContentProps {
 
 const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
   const [activeEvidence, setActiveEvidence] = useState(0);
+  const [isDetailPanelVisible, setIsDetailPanelVisible] = useState(false);
 
   const evidenceExists = activeEvidence < evidenceList.length;
   const evidenceHasAdditionalImages =
@@ -31,6 +33,11 @@ const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
                   className="evidence-detail-image-container"
                   style={{
                     cursor: evidenceHasAdditionalImages ? "pointer" : "default",
+                  }}
+                  onClick={() => {
+                    if (evidenceHasAdditionalImages) {
+                      setIsDetailPanelVisible(true);
+                    }
                   }}
                 >
                   {/* Evidence image */}
@@ -92,7 +99,7 @@ const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
                 </div>
               </div>
               <div className="evidence-info-container">
-                {/* Evidence title */}
+                {/* Evidence name */}
                 <span className="evidence-title">
                   {evidenceExists && evidenceList[activeEvidence].name
                     ? evidenceList[activeEvidence].name
@@ -118,12 +125,11 @@ const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
           setActiveItem={setActiveEvidence}
         />
       </div>
-      <button className="details-background">
-        <div className="details-container">
-          <img src="https://i.imgur.com/nAsqNUD.png" alt="" />
-          <div className="details-controls"></div>
-        </div>
-      </button>
+      <DetailImages
+        data={evidenceList[activeEvidence]?.additionalImages || []}
+        isVisible={isDetailPanelVisible}
+        setIsVisible={setIsDetailPanelVisible}
+      />
     </>
   );
 };

@@ -133,7 +133,7 @@ const App: React.FC = () => {
               </div>
             ) : (
               <div className="content" key="profiles">
-                <ProfileContent />
+                <ProfileContent profileList={profileList} />
               </div>
             )}
           </div>

@@ -286,7 +286,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px), (max-height: 600px) {
   .leather-binding {
     min-height: calc(19.4rem - 1px);
   }
