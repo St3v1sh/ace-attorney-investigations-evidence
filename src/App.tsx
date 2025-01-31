@@ -40,7 +40,7 @@ const App: React.FC = () => {
       .then((data) => {
         setEvidenceList(
           data.evidence?.map((d: string[]) => ({
-            title: d[0],
+            name: d[0],
             description: d[1],
             imageUrl: d[2],
             additionalImages: d[3]
@@ -57,7 +57,6 @@ const App: React.FC = () => {
           }))
         );
         setLoading(false);
-        console.log(data);
       })
       .catch((err) => {
         const errorId = Date.now();

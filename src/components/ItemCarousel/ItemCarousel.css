@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.evidence-controls-container {
+.item-controls-container {
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -15,7 +15,7 @@
   border-radius: 0.5rem;
 }
 
-.evidence-controls {
+.item-controls {
   flex: 0 0 3rem;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 
-.evidence-list {
+.item-list {
   box-sizing: border-box;
   flex: 1;
   background-color: rgba(0, 0, 0, 0.05);
@@ -61,6 +61,11 @@
   background-color: #5e5958;
 }
 
+.page-indicator > span.ellipsis {
+  margin: 0 0.5rem;
+  user-select: none;
+}
+
 .carousel {
   box-sizing: border-box;
   display: flex;
@@ -68,6 +73,7 @@
   justify-content: center;
   height: 100%;
   margin: 0 0.75rem;
+  min-width: 10rem;
 }
 
 .carousel-item {
@@ -78,7 +84,6 @@
   margin: 0 0.75rem;
   padding: 0;
   border: none;
-  flex-shrink: 0;
   background-color: gray;
   box-shadow: inset 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5),
     inset -0.05rem -0.05rem 0.1rem rgba(255, 255, 255, 0.5);
@@ -108,4 +113,9 @@
   transform: translate(-0.3rem, -0.3rem);
   border: 0.3rem solid white;
   box-shadow: 0rem 0rem 0 0.2rem black;
+}
+
+.invisible {
+  opacity: 0;
+  cursor: default;
 }

@@ -91,9 +91,9 @@ const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
             <div className="evidence-info-container">
               {/* Evidence title */}
               <span className="evidence-title">
-                {evidenceExists
-                  ? evidenceList[activeEvidence].title
-                  : "MISSNG EVIDENCE"}
+                {evidenceExists && evidenceList[activeEvidence].name
+                  ? evidenceList[activeEvidence].name
+                  : "???"}
               </span>
               <div className="evidence-description-container">
                 <div className="evidence-description">
@@ -110,9 +110,9 @@ const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
         </div>
       </div>
       <ItemCarousel
-        evidenceList={evidenceList}
-        activeEvidence={activeEvidence}
-        setActiveEvidence={setActiveEvidence}
+        itemList={evidenceList}
+        activeItem={activeEvidence}
+        setActiveItem={setActiveEvidence}
       />
     </div>
   );
