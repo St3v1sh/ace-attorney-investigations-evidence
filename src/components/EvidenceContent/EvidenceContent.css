@@ -229,6 +229,33 @@
   line-height: 1.4rem;
 }
 
+.details-background {
+  position: none;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.details-container {
+  display: flex;
+  width: 100%;
+  max-height: 80%;
+  flex-direction: column;
+}
+
+.details-controls {
+  width: 100%;
+  height: 6rem;
+  background-color: white;
+}
+
 @media screen and (max-width: 600px) {
   .evidence-detail-image-container {
     width: 7rem;
