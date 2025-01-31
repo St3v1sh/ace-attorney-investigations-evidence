@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 :root {
   --primary-color-red: #a8001a;
   --primary-color-red-rgb: 168, 0, 26;
@@ -14,16 +16,15 @@
   --primary-color-dark-rgb: 24, 24, 27;
   --primary-color-text: #cccccc;
   --primary-color-text-rgb: 204, 204, 204;
+  --primary-color-gray: #58585b;
+  --primary-color-gray-rgb: 88, 88, 91;
 }
 
 html {
-  background-color: var(--primary-color-dark-purple);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
+  background-color: var(--primary-color-gray);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #cccccc;
+  color: black;
 }
 
 html,
@@ -37,4 +38,8 @@ body,
   padding: 0;
   width: 100%;
   height: 100%;
+}
+
+* {
+  font-family: "Encode Sans Condensed", serif;
 }

@@ -5,7 +5,13 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", { target: '18' }]],
+      }
+    }),
+  ],
   build: {
     rollupOptions: {
       input: {

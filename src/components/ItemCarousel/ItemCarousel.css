@@ -1,0 +1,121 @@
+.pagination-container {
+  display: grid;
+  grid-template-rows: auto 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.item-controls-container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5),
+    inset 0 -0.1rem 0.2rem rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+}
+
+.item-controls {
+  flex: 0 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.item-list {
+  box-sizing: border-box;
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0.2rem 0 0.2rem -0.2rem rgba(0, 0, 0, 0.5),
+    inset -0.2rem 0 0.2rem -0.2rem rgba(0, 0, 0, 0.5);
+  border-left: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
+}
+
+.page-indicator {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: end;
+}
+
+.page-indicator > div {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin: 0 0.25rem;
+  background-color: #aba8a7;
+  border-top-color: #606060;
+  border-left-color: #808080;
+  border-bottom-color: #fff;
+  border-right-color: #808080;
+  box-shadow: inset 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset -0.05rem -0.05rem 0.1rem rgba(255, 255, 255, 0.5);
+}
+
+.page-indicator > div.active {
+  background-color: #5e5958;
+}
+
+.page-indicator > span.ellipsis {
+  margin: 0 0.5rem;
+  user-select: none;
+}
+
+.carousel {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0 0.75rem;
+  min-width: 10rem;
+}
+
+.carousel-item {
+  position: relative;
+  box-sizing: border-box;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 0.75rem;
+  padding: 0;
+  border: none;
+  background-color: gray;
+  box-shadow: inset 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset -0.05rem -0.05rem 0.1rem rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.carousel-image {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.carousel-item-shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: inset 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5),
+    inset -0.05rem -0.05rem 0.1rem rgba(255, 255, 255, 0.5);
+}
+
+.carousel-item .active {
+  transform: translate(-0.3rem, -0.3rem);
+  border: 0.3rem solid white;
+  box-shadow: 0rem 0rem 0 0.2rem black;
+}
+
+.invisible {
+  opacity: 0;
+  cursor: default;
+}
