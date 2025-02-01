@@ -1,5 +1,3 @@
-extension.zip
-
 # Logs
 logs
 *.log
@@ -8,8 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
 node_modules
+ace-attorney-investigations-evidence.zip
 # dist
 dist/ace-attorney-investigations-evidence.zip
 dist-ssr

@@ -6,16 +6,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Delete old zip.
-import { rm } from 'fs';
-rm(join(__dirname, 'dist', 'ace-attorney-investigations-evidence.zip'), (err) => {
-  if (err) {
-    console.error(err);
-  }
-});
-
-// Create new zip.
-const output = createWriteStream(join(__dirname, 'dist', 'ace-attorney-investigations-evidence.zip'));
+const output = createWriteStream(join(__dirname, '/', 'ace-attorney-investigations-evidence.zip'));
 const archive = archiver('zip', {
   zlib: { level: 9 }
 });
