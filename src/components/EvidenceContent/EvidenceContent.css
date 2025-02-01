@@ -228,7 +228,7 @@
   line-height: 1.4rem;
 }
 
-@media screen and (max-width: 600px), (max-height: 600px) {
+@media screen and (max-width: 600px) {
   .evidence-detail-image-container {
     width: 7rem;
     height: 7rem;

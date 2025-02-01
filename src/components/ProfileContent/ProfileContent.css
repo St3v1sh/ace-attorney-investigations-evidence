@@ -141,7 +141,8 @@
   width: 100%;
 }
 
-.profile-title, .profile-age {
+.profile-title,
+.profile-age {
   flex: 0 0 auto;
   padding: 0.3rem 0.5rem;
   font-size: 1.1rem;
@@ -186,7 +187,7 @@
   line-height: 1.4rem;
 }
 
-@media screen and (max-width: 600px), (max-height: 600px) {
+@media screen and (max-width: 600px) {
   .profile-detail-image-container {
     width: 7rem;
     height: 7rem;
