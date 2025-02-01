@@ -52,19 +52,19 @@ const DetailImages: React.FC<DetailImagesProps> = ({
             {data.map((link, index) =>
               getYouTubeVideoId(link)
                 ? index === activeDetailImage && (
-                    <iframe
+                    <div
                       className="details-image"
-                      src={
-                        "https://www.youtube.com/embed/" +
-                        getYouTubeVideoId(link)
-                      }
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
                       key={index}
-                    ></iframe>
+                      style={{
+                        backgroundColor: "black",
+                        color: "var(--primary-color-text)",
+                        width: "100%",
+                        height: "100%",
+                        padding: "0.5rem",
+                      }}
+                    >
+                      YouTube embeds are currently disallowed.
+                    </div>
                   )
                 : index === activeDetailImage && (
                     <a
