@@ -98,7 +98,7 @@
   width: 100%;
   height: 2.5rem;
   bottom: 100%;
-  margin-left: 1.4rem;
+  padding-left: 1.4rem;
 }
 
 .tab {
@@ -165,7 +165,9 @@
   border-bottom: 0.15rem solid black;
 }
 
-.refresh-container {
+.options-container {
+  display: flex;
+  flex-direction: row;
   width: 8rem;
   height: 100%;
   box-sizing: border-box;
@@ -174,26 +176,26 @@
 }
 
 .refresh {
+  box-sizing: border-box;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   font-size: 1.5rem;
-  width: 100%;
   height: 100%;
   background-image: linear-gradient(to bottom, #8d683f, #3f2b10);
   border: 0.2rem solid #241809;
-  border-right: none;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   user-select: none;
 }
 
-.refresh:hover {
+.refresh:hover, .settings:hover {
   filter: brightness(1.2);
 }
 
-.refresh:active {
+.refresh:active, .settings:active {
   background-image: linear-gradient(to top, #8d683f, #3f2b10);
 }
 
@@ -203,8 +205,6 @@
   align-items: center;
   width: 1.5rem;
   height: 1.5rem;
-  filter: invert(97%) sepia(26%) saturate(5%) hue-rotate(287deg)
-    brightness(104%) contrast(60%);
 }
 
 .spinning {
@@ -219,6 +219,21 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.settings {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 100%;
+  background-image: linear-gradient(to bottom, #8d683f, #3f2b10);
+  border: 0.2rem solid #241809;
+  border-left: none;
+  user-select: none;
 }
 
 .content-background {

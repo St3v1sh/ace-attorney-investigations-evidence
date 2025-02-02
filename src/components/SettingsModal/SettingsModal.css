@@ -1,0 +1,113 @@
+.settings-container {
+  box-sizing: border-box;
+  position: absolute;
+  width: 15rem;
+  height: 100%;
+  right: 0;
+  padding-bottom: 0.4rem;
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.zoom-options {
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  height: 100%;
+  background-image: linear-gradient(to bottom, #8d683f, #3f2b10);
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  user-select: none;
+}
+
+.zoom-icon {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 100%;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border: 0.2rem solid #241809;
+  border-right: none;
+  padding: 0.35rem;
+}
+
+.zoom-button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-image: linear-gradient(to bottom, #8d683f, #3f2b10);
+  color: var(--primary-color-text);
+  font-size: 1.5rem;
+  border: 0.2rem solid #241809;
+  border-right: none;
+  cursor: pointer;
+}
+
+.zoom-button:active {
+  background-image: linear-gradient(to top, #8d683f, #3f2b10);
+}
+
+.zoom-button:hover {
+  filter: brightness(1.2);
+}
+
+.zoom-percentage-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 100%;
+  border-top: 0.2rem solid #241809;
+  border-bottom: 0.2rem solid #241809;
+  user-select: none;
+}
+
+.zoom-percentage {
+  color: var(--primary-color-text);
+  font-size: 1rem;
+  user-select: none;
+}
+
+.settings-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color-text);
+  width: 3rem;
+  border: 0.2rem solid #241809;
+  background-image: linear-gradient(to bottom, #8d683f, #3f2b10);
+  user-select: none;
+  cursor: pointer;
+}
+
+.settings-close:active {
+  background-image: linear-gradient(to top, #8d683f, #3f2b10);
+}
+
+.settings-close:hover {
+  filter: brightness(1.2);
+}
