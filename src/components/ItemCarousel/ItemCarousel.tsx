@@ -80,10 +80,12 @@ const ItemCarousel: React.FC<ItemCarouselProps> = ({
     };
 
     updateItemList();
-    window.addEventListener("resize", updateItemList);
+
+    const resizeObserver = new ResizeObserver(updateItemList);
+    resizeObserver.observe(indicatorContainer);
 
     return () => {
-      window.removeEventListener("resize", updateItemList);
+      resizeObserver.disconnect();
     };
   }, [activePage, itemList, itemSlots, maxPageIndicators, numberOfPages]);
 

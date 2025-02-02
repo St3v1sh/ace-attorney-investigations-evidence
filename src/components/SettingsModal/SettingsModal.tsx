@@ -14,10 +14,10 @@ const SettingsContainer: React.FC<SettingsContainerProps> = ({
   const [zoomPercentage, setZoomPercentage] = useState(100);
 
   const zoomOut = () => {
-    if (zoomPercentage > 80) {
+    if (zoomPercentage > 40) {
       setZoomPercentage(zoomPercentage - 20);
     } else {
-      setZoomPercentage(80);
+      setZoomPercentage(40);
     }
   };
 
