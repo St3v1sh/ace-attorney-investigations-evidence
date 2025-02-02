@@ -236,19 +236,17 @@
   width: 100%;
   height: 100%;
   padding: 0.7rem;
-  animation: show 0.15s ease-in-out;
+  animation: show 0.1s ease;
   transform-origin: top left;
 }
 
 @keyframes show {
   0% {
-    transform: scale(0.95);
-    opacity: 0;
+    transform: translateX(-50%);
   }
 
   100% {
-    transform: scale(1);
-    opacity: 1;
+    transform: translateX(0);
   }
 }
 

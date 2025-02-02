@@ -67,18 +67,21 @@ const DetailImages: React.FC<DetailImagesProps> = ({
                     </div>
                   )
                 : index === activeDetailImage && (
-                    <a
-                      href={link}
-                      target="_blank"
-                      onClick={(event) => event.stopPropagation()}
-                      key={index}
-                    >
-                      <img
-                        className="details-image"
-                        src={link}
-                        alt="Detail image imgur link."
-                      />
-                    </a>
+                    <div className="details-image-link-container">
+                      <a
+                        className="details-image-link"
+                        href={link}
+                        target="_blank"
+                        onClick={(event) => event.stopPropagation()}
+                        key={index}
+                      >
+                        <img
+                          className="details-image"
+                          src={link}
+                          alt="Detail image imgur link."
+                        />
+                      </a>
+                    </div>
                   )
             )}
           </div>
