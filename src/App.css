@@ -179,12 +179,13 @@
 }
 
 .options-container {
+  position: fixed;
   display: flex;
   flex-direction: row;
-  width: 8rem;
-  height: 100%;
+  right: 0;
+  width: 7rem;
+  height: 2.5rem;
   box-sizing: border-box;
-  margin-left: auto;
   padding-bottom: 0.4rem;
 }
 

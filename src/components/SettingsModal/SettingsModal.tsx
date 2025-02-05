@@ -14,19 +14,32 @@ const SettingsContainer: React.FC<SettingsContainerProps> = ({
   const [zoomPercentage, setZoomPercentage] = useState(100);
 
   const zoomOut = () => {
-    if (zoomPercentage > 40) {
-      setZoomPercentage(zoomPercentage - 20);
-    } else {
-      setZoomPercentage(40);
+    const newZoomPercentage = zoomPercentage - 20;
+    if (newZoomPercentage >= 40) {
+      setZoomPercentage(newZoomPercentage);
+      saveZoom(newZoomPercentage);
     }
   };
 
   const zoomIn = () => {
-    if (zoomPercentage < 300) {
-      setZoomPercentage(zoomPercentage + 20);
-    } else {
-      setZoomPercentage(300);
+    const newZoomPercentage = zoomPercentage + 20;
+    if (newZoomPercentage <= 300) {
+      setZoomPercentage(newZoomPercentage);
+      saveZoom(newZoomPercentage);
     }
+  };
+
+  const saveZoom = (percentage: number) => {
+    const zoomSettingName = getZoomSettingName();
+    localStorage.setItem(zoomSettingName, percentage.toString());
+  };
+
+  const getZoomSettingName = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("platform") === "mobile") {
+      return "mobileZoomPercentage";
+    }
+    return "zoomPercentage";
   };
 
   useEffect(() => {
@@ -34,6 +47,20 @@ const SettingsContainer: React.FC<SettingsContainerProps> = ({
       (baseSize * zoomPercentage) / 100
     }px`;
   }, [zoomPercentage]);
+
+  // Load zoom percentage from local storage.
+  useEffect(() => {
+    const zoomSettingName = getZoomSettingName();
+    const storedZoomPercentage = localStorage.getItem(zoomSettingName);
+    if (storedZoomPercentage) {
+      setZoomPercentage(parseInt(storedZoomPercentage));
+    } else {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("platform") === "mobile") {
+        setZoomPercentage(80);
+      }
+    }
+  }, []);
 
   return (
     isVisible && (
