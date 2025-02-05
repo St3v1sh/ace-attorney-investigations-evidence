@@ -18,7 +18,6 @@
 }
 
 .evidence-detail-container-background {
-  position: relative;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -28,12 +27,17 @@
   box-shadow: inset 0 0 0 1px white, 0 0.4rem 0 #47453f;
 }
 
+.evidence-detail-padding {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .evidence-detail {
   position: absolute;
   box-sizing: border-box;
-  /* Comes from evidence-detail-container-background size + padding */
-  width: calc(100% - 1rem);
-  height: calc(100% - 1rem);
+  width: 100%;
+  height: 100%;
   background-color: #293331;
   border-radius: 0.25rem;
   overflow: hidden;
