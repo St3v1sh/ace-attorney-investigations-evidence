@@ -214,7 +214,7 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
 }
 .evidence-description::-webkit-scrollbar {
   width: 0.4rem;

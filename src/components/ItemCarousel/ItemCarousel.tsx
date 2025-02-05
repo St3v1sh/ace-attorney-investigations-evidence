@@ -22,19 +22,20 @@ const ItemCarousel: React.FC<ItemCarouselProps> = ({
   const [itemsOnPage, setItemsOnPage] = useState<Item[]>([]);
 
   const indicatorRef = useRef<HTMLDivElement>(null);
+  const measurementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const indicatorContainer = indicatorRef.current;
     if (!indicatorContainer) return;
 
     const updateItemList = () => {
-      const documentWidth = document.documentElement.scrollWidth;
       const rem = parseFloat(
         getComputedStyle(document.documentElement).fontSize
       );
 
       // Calculate the number of item slots.
-      const carouselWidth = documentWidth - 152.375; // Hardcoded value based on measurements (document width - carousel width).
+      const carouselWidth =
+        measurementRef.current!.getBoundingClientRect().width;
       const itemWidth = (4 + 0.75 + 0.75) * rem;
       const calculatedItemSlots = Math.floor(carouselWidth / itemWidth);
       setItemSlots(calculatedItemSlots);
@@ -83,9 +84,11 @@ const ItemCarousel: React.FC<ItemCarouselProps> = ({
 
     const resizeObserver = new ResizeObserver(updateItemList);
     resizeObserver.observe(indicatorContainer);
+    window.addEventListener("resize", updateItemList);
 
     return () => {
       resizeObserver.disconnect();
+      window.removeEventListener("resize", updateItemList);
     };
   }, [activePage, itemList, itemSlots, maxPageIndicators, numberOfPages]);
 
@@ -105,145 +108,150 @@ const ItemCarousel: React.FC<ItemCarouselProps> = ({
   };
 
   return (
-    <div className="pagination-container">
-      <div className="item-controls-container">
-        <button className="item-controls" onClick={handlePrevious}>
-          <svg
-            fill="#925c1f"
-            viewBox="0 0 512 512"
-            xmlns="http://www.w3.org/2000/svg"
-            width={"2.5rem"}
-            height={"3.5rem"}
-          >
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              stroke="#462c0e"
-              strokeWidth="10"
+    <>
+      <div className="pagination-container">
+        <div className="item-controls-container">
+          <button className="item-controls" onClick={handlePrevious}>
+            <svg
+              fill="#925c1f"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+              width={"2.5rem"}
+              height={"3.5rem"}
             >
-              <filter
-                id="arrow-shadow"
-                x="-50%"
-                y="-50%"
-                width="200%"
-                height="200%"
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="#462c0e"
+                strokeWidth="10"
               >
-                <feDropShadow
-                  dx="15"
-                  dy="15"
-                  stdDeviation="10"
-                  floodColor="black"
-                  floodOpacity="0.8"
-                />
-              </filter>
-              <path
-                filter="url(#arrow-shadow)"
-                d="M366.326 2.877c-16.847-6.426-35.491-1.883-47.497 11.572L128.884 227.314c-14.592 16.353-14.592 41.019.001 57.372l189.944 212.865c8.386 9.399 20.012 14.448 32.004 14.448 5.172 0 10.415-.938 15.493-2.874 16.847-6.425 27.734-22.227 27.734-40.259V43.135c0-18.031-10.885-33.833-27.734-40.258z"
-              ></path>
-            </g>
-          </svg>
-        </button>
-        <div className="item-list">
-          <div className="carousel">
-            {/* Evidence goes here */}
-            {itemsOnPage.map((item, index) => {
-              return (
-                <button
-                  className={
-                    "carousel-item" + (isEmptyItem(item) ? " invisible" : "")
-                  }
-                  key={index}
-                  onClick={() => {
-                    if (!isEmptyItem(item)) {
-                      setActiveItem(activePage * itemSlots + index);
-                    }
-                  }}
+                <filter
+                  id="arrow-shadow"
+                  x="-50%"
+                  y="-50%"
+                  width="200%"
+                  height="200%"
                 >
-                  {!isEmptyItem(item) && (
-                    <>
-                      <SafeImage
-                        src={item.imageUrl}
-                        alt={item.name}
-                        className="carousel-image"
-                      />
-                      <div
-                        className={
-                          "carousel-item-shadow" +
-                          (index === activeItem - activePage * itemSlots
-                            ? " active"
-                            : "")
-                        }
-                      ></div>
-                    </>
-                  )}
-                </button>
-              );
-            })}
+                  <feDropShadow
+                    dx="15"
+                    dy="15"
+                    stdDeviation="10"
+                    floodColor="black"
+                    floodOpacity="0.8"
+                  />
+                </filter>
+                <path
+                  filter="url(#arrow-shadow)"
+                  d="M366.326 2.877c-16.847-6.426-35.491-1.883-47.497 11.572L128.884 227.314c-14.592 16.353-14.592 41.019.001 57.372l189.944 212.865c8.386 9.399 20.012 14.448 32.004 14.448 5.172 0 10.415-.938 15.493-2.874 16.847-6.425 27.734-22.227 27.734-40.259V43.135c0-18.031-10.885-33.833-27.734-40.258z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+          <div className="item-list">
+            <div className="carousel">
+              {/* Evidence goes here */}
+              {itemsOnPage.map((item, index) => {
+                return (
+                  <button
+                    className={
+                      "carousel-item" + (isEmptyItem(item) ? " invisible" : "")
+                    }
+                    key={index}
+                    onClick={() => {
+                      if (!isEmptyItem(item)) {
+                        setActiveItem(activePage * itemSlots + index);
+                      }
+                    }}
+                  >
+                    {!isEmptyItem(item) && (
+                      <>
+                        <SafeImage
+                          src={item.imageUrl}
+                          alt={item.name}
+                          className="carousel-image"
+                        />
+                        <div
+                          className={
+                            "carousel-item-shadow" +
+                            (index === activeItem - activePage * itemSlots
+                              ? " active"
+                              : "")
+                          }
+                        ></div>
+                      </>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <button className="item-controls" onClick={handleNext}>
-          <svg
-            fill="#925c1f"
-            viewBox="0 0 512 512"
-            xmlns="http://www.w3.org/2000/svg"
-            width={"2.5rem"}
-            height={"3.5rem"}
-            transform="matrix(-1, 0, 0, 1, 0, 0)"
-          >
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              stroke="#462c0e"
-              strokeWidth="10"
+          <button className="item-controls" onClick={handleNext}>
+            <svg
+              fill="#925c1f"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+              width={"2.5rem"}
+              height={"3.5rem"}
+              transform="matrix(-1, 0, 0, 1, 0, 0)"
             >
-              <filter
-                id="arrow-shadow"
-                x="-50%"
-                y="-50%"
-                width="200%"
-                height="200%"
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="#462c0e"
+                strokeWidth="10"
               >
-                <feDropShadow
-                  dx="15"
-                  dy="15"
-                  stdDeviation="10"
-                  floodColor="black"
-                  floodOpacity="0.8"
-                />
-              </filter>
-              <path
-                filter="url(#arrow-shadow)"
-                d="M366.326 2.877c-16.847-6.426-35.491-1.883-47.497 11.572L128.884 227.314c-14.592 16.353-14.592 41.019.001 57.372l189.944 212.865c8.386 9.399 20.012 14.448 32.004 14.448 5.172 0 10.415-.938 15.493-2.874 16.847-6.425 27.734-22.227 27.734-40.259V43.135c0-18.031-10.885-33.833-27.734-40.258z"
-              ></path>
-            </g>
-          </svg>
-        </button>
+                <filter
+                  id="arrow-shadow"
+                  x="-50%"
+                  y="-50%"
+                  width="200%"
+                  height="200%"
+                >
+                  <feDropShadow
+                    dx="15"
+                    dy="15"
+                    stdDeviation="10"
+                    floodColor="black"
+                    floodOpacity="0.8"
+                  />
+                </filter>
+                <path
+                  filter="url(#arrow-shadow)"
+                  d="M366.326 2.877c-16.847-6.426-35.491-1.883-47.497 11.572L128.884 227.314c-14.592 16.353-14.592 41.019.001 57.372l189.944 212.865c8.386 9.399 20.012 14.448 32.004 14.448 5.172 0 10.415-.938 15.493-2.874 16.847-6.425 27.734-22.227 27.734-40.259V43.135c0-18.031-10.885-33.833-27.734-40.258z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div className="page-indicator" ref={indicatorRef}>
+          {/* Pagination indicators here. */}
+          {numberOfPages > maxPageIndicators &&
+            activePage > Math.floor(maxPageIndicators / 2) && (
+              <span className="ellipsis">...</span>
+            )}
+          {Array.from(
+            { length: Math.min(numberOfPages, maxPageIndicators) },
+            (_, index) => index
+          ).map((index) => (
+            <div
+              key={index}
+              className={
+                index + pageIndicatorNumberOffset === activePage ? "active" : ""
+              }
+            ></div>
+          ))}
+          {numberOfPages > maxPageIndicators &&
+            activePage < numberOfPages - Math.floor(maxPageIndicators / 2) && (
+              <span className="ellipsis">...</span>
+            )}
+        </div>
       </div>
-      <div className="page-indicator" ref={indicatorRef}>
-        {/* Pagination indicators here. */}
-        {numberOfPages > maxPageIndicators &&
-          activePage > Math.floor(maxPageIndicators / 2) && (
-            <span className="ellipsis">...</span>
-          )}
-        {Array.from(
-          { length: Math.min(numberOfPages, maxPageIndicators) },
-          (_, index) => index
-        ).map((index) => (
-          <div
-            key={index}
-            className={
-              index + pageIndicatorNumberOffset === activePage ? "active" : ""
-            }
-          ></div>
-        ))}
-        {numberOfPages > maxPageIndicators &&
-          activePage < numberOfPages - Math.floor(maxPageIndicators / 2) && (
-            <span className="ellipsis">...</span>
-          )}
+      <div className="measurement-container">
+        <div className="measurement" ref={measurementRef}></div>
       </div>
-    </div>
+    </>
   );
 };
 

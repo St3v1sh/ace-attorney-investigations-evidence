@@ -16,23 +16,22 @@
 }
 
 .item-controls {
-  flex: 0 0 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  width: 3.5rem;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .item-list {
-  box-sizing: border-box;
   flex: 1;
+  padding: 0 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
   box-shadow: inset 0.2rem 0 0.2rem -0.2rem rgba(0, 0, 0, 0.5),
     inset -0.2rem 0 0.2rem -0.2rem rgba(0, 0, 0, 0.5);
-  border-left: 0.1rem solid rgba(0, 0, 0, 0.2);
-  border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
 }
 
 .page-indicator {
@@ -58,7 +57,7 @@
 }
 
 .page-indicator > div.active {
-  background-color: #5e5958;
+  background-color: #554f4d;
 }
 
 .page-indicator > span.ellipsis {
@@ -72,7 +71,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin: 0 0.75rem;
   min-width: 10rem;
 }
 
@@ -118,4 +116,22 @@
 .invisible {
   opacity: 0;
   cursor: default;
+}
+
+.measurement-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 5rem;
+  z-index: -999;
+}
+
+.measurement {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: -999;
 }
