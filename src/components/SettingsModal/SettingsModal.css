@@ -1,8 +1,7 @@
 .settings-container {
   box-sizing: border-box;
-  position: absolute;
-  width: 15rem;
-  height: 100%;
+  position: fixed;
+  height: 2.5rem;
   right: 0;
   padding-bottom: 0.4rem;
   display: flex;
@@ -23,7 +22,6 @@
 
 .zoom-options {
   box-sizing: border-box;
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,12 +48,11 @@
 }
 
 .zoom-button {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
+  width: 3rem;
   height: 100%;
   border: none;
   background-image: linear-gradient(to bottom, #8d683f, #3f2b10);

@@ -13,7 +13,8 @@
   border-radius: 0.68rem;
   padding-bottom: 0.4rem;
   box-shadow: 0 0.4rem 0.2rem -0.1rem rgba(159, 153, 141, 1);
-  min-height: 0;
+  /* Comes from detail image height + bottom padding + 2 border */
+  min-height: 11.8rem;
 }
 
 .profile-detail-container-background {
@@ -22,13 +23,20 @@
   height: 100%;
   padding: 0.5rem;
   background-color: #9f998d;
-  /* border: 0.2rem solid black; */
   border-radius: 0.5rem;
   box-shadow: inset 0 0 0 1px white, 0 0.4rem 0 #47453f;
 }
 
+.profile-detail-padding {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .profile-detail {
+  position: absolute;
   box-sizing: border-box;
+  width: 100%;
   height: 100%;
   background-color: #293331;
   border-radius: 0.25rem;
@@ -191,5 +199,10 @@
   .profile-detail-image-container {
     width: 7rem;
     height: 7rem;
+  }
+
+  .profile-detail-container {
+    /* Comes from detail image height + bottom padding + 2 border */
+    min-height: 8.8rem;
   }
 }

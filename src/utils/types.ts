@@ -1,5 +1,7 @@
 export type Item = Evidence | Profile;
 
+export type ZoomSettingName = "zoomPercentage" | "mobileZoomPercentage";
+
 export interface Evidence {
   name: string;
   description: string;

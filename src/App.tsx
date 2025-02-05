@@ -102,7 +102,9 @@ const App: React.FC = () => {
       <div className="crt"></div>
       <div className="book-container">
         <div className="leather-binding">
-          <div className="lacing-top"></div>
+          <div className="lacing-container-top">
+            <div className="lacing-top"></div>
+          </div>
           <div className="content-container">
             <div className="tabs-container">
               <button className="tab" onClick={() => changeTab("Evidence")}>
@@ -156,7 +158,9 @@ const App: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="lacing-bottom"></div>
+          <div className="lacing-container-bottom">
+            <div className="lacing-bottom"></div>
+          </div>
         </div>
         {error && (
           <div className="error-container">
