@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ZoomSettingName } from "../../utils/types";
 import "./SettingsModal.css";
 
 interface SettingsContainerProps {
@@ -34,7 +35,7 @@ const SettingsContainer: React.FC<SettingsContainerProps> = ({
     localStorage.setItem(zoomSettingName, percentage.toString());
   };
 
-  const getZoomSettingName = () => {
+  const getZoomSettingName: () => ZoomSettingName = () => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("platform") === "mobile") {
       return "mobileZoomPercentage";
@@ -55,8 +56,7 @@ const SettingsContainer: React.FC<SettingsContainerProps> = ({
     if (storedZoomPercentage) {
       setZoomPercentage(parseInt(storedZoomPercentage));
     } else {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get("platform") === "mobile") {
+      if (zoomSettingName === "mobileZoomPercentage") {
         setZoomPercentage(80);
       }
     }
