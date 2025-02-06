@@ -90,8 +90,16 @@ Note: The tool is already usable in this step if you host it as a website.
 2. Go to the [Twitch Developer Console](https://dev.twitch.tv/console).
 3. Go through all the necessary steps to create a new extension. Please read and understand the Twitch extension documentation for this section.
 4. Obtain the extension files (`ace-attorney-investigations-evidence.zip`) by running `npm run zip`.
-5. Upload this zip during in the `Files` tab of your extension's page on the twitch developer console.
+5. Upload this zip in the `Files` tab of your extension's page on the twitch developer console.
 6. Submit the extension for review.
    - If Twitch staff requests changes, follow those changes and resubmit.
 
 Note: Depending on what you need to do in your version of the extension, you may need to change the allowlists in the capabilities tab of your extension on the Twitch developer console. Don't forget to put your Web app URL in the fetching domains allowlist. For my own purposes, I also added `https://i.imgur.com/` as an image domain to host all the evidence images. Video evidence is out of the scope of this extension since Twitch disallows embeds in extensions, although it's possible to set up your own CDN to host video files for your extension. See src > components > DetailImages > DetailImages.tsx if you are interested in implementing video evidence.
+
+### Screenshots
+
+![image](https://github.com/user-attachments/assets/98cf01de-af74-4a2b-95e7-2fc63c6c61ea)
+
+![image](https://github.com/user-attachments/assets/89be520b-3194-40f9-bcf4-76be79868cb3)
+
+![image](https://github.com/user-attachments/assets/1ee58d50-0e56-46cf-aec0-43b4f57a5fbd)
