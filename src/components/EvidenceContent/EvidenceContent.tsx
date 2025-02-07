@@ -20,6 +20,7 @@ const EvidenceContent: React.FC<EvidenceContentProps> = ({ evidenceList }) => {
   // Change activeEvidence to 0 when evidenceList changes.
   useEffect(() => {
     setActiveEvidence(0);
+    setIsDetailPanelVisible(false);
   }, [evidenceList]);
 
   return (

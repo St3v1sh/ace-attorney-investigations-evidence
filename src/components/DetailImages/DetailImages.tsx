@@ -30,7 +30,7 @@ const DetailImages: React.FC<DetailImagesProps> = ({
 
   const nextDetailImage = () => {
     setActiveDetailImage((previousActiveDetailImage) => {
-      if (previousActiveDetailImage === data.length - 1) {
+      if (previousActiveDetailImage >= data.length - 1) {
         setIsVisible(false);
         setActiveDetailImage(0);
         return previousActiveDetailImage;
